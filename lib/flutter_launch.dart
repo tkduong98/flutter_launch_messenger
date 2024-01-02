@@ -6,15 +6,13 @@ class FlutterLaunch {
   static const MethodChannel _channel =
       MethodChannel('br.com.thyagoluciano/flutter_launch');
 
-  static Future<void> launchWhatsapp({
-    required String phone,
-    required String message,
+  static Future<void> launchMessenger({
+    required String id,
   }) async {
     final Map<String, dynamic> params = <String, dynamic>{
-      'phone': phone,
-      'message': message
+      'id': id,
     };
-    await _channel.invokeMethod('launchWhatsapp', params);
+    await _channel.invokeMethod('launchMessenger', params);
   }
 
   static Future<bool> hasApp({required String name}) async {
