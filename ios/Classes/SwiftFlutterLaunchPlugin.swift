@@ -12,7 +12,7 @@ public class SwiftFlutterLaunchPlugin: NSObject, FlutterPlugin {
 
     if ("launchMessenger" == call.method) {
       let args = call.arguments as! Dictionary<String, String>
-        let idUser = args["id_user"]
+        let idUser = args["id"]
         let urlMessenger = "fb-messenger-public://user-thread/\(idUser)"
 
       let urlStringEncoded = urlMessenger.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
