@@ -29,26 +29,16 @@ class FlutterLaunchPlugin: FlutterPlugin, MethodCallHandler {
     try {
       val pm: PackageManager = context.packageManager
 
-      if (call.method == "launchWhatsapp") {
+      if (call.method == "launchMessenger") {
 
-        val phone: String? = call.argument("phone")
-        val message: String? = call.argument("message")
+        val id: String? = call.argument("id")
 
-        val url: String = "https://api.whatsapp.com/send?phone=$phone&text=${URLEncoder.encode(message, "UTF-8")}"
+        val url: String = "https://m.me/$id"
 
-        if (appInstalledOrNot("com.whatsapp")) {
+        if (appInstalledOrNot("com.facebook.orca")) {
           val intent: Intent = Intent(Intent.ACTION_VIEW)
           intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-          intent.setPackage("com.whatsapp")
-          intent.data = Uri.parse(url)
-
-          if (intent.resolveActivity(pm) != null) {
-            context.startActivity(intent)
-          }
-        } else if (appInstalledOrNot("com.whatsapp.wb4")) {
-          val intent: Intent = Intent(Intent.ACTION_VIEW)
-          intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-          intent.setPackage("com.whatsapp.wb4")
+          intent.setPackage("com.facebook.orca")
           intent.data = Uri.parse(url)
 
           if (intent.resolveActivity(pm) != null) {
@@ -61,8 +51,7 @@ class FlutterLaunchPlugin: FlutterPlugin, MethodCallHandler {
         val app: String? = call.argument("name")
 
         when(app) {
-          "whatsapp" -> result.success(appInstalledOrNot("com.whatsapp"))
-          "whatsapp.wb4" -> result.success(appInstalledOrNot("com.whatsapp.wb4"))
+          "whatsapp" -> result.success(appInstalledOrNot("com.facebook.orca"))
           else -> {
             result.error("App not found", "", null)
           }
