@@ -33,7 +33,7 @@ class FlutterLaunchPlugin: FlutterPlugin, MethodCallHandler {
 
         val id: String? = call.argument("id")
 
-        val url: String = "fb-messenger-public://user-thread/$id"
+        val url: String = "https://m.me/$id"
 
         if (appInstalledOrNot("com.facebook.orca")) {
           val intent: Intent = Intent(Intent.ACTION_VIEW)
