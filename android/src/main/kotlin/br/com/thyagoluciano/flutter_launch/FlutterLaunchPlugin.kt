@@ -33,7 +33,7 @@ class FlutterLaunchPlugin: FlutterPlugin, MethodCallHandler {
 
         val id: String? = call.argument("id")
 
-        val url: String = "https://m.me/$id"
+        val url: String = "fb-messenger-public://user-thread/$id"
 
         if (appInstalledOrNot("com.facebook.orca")) {
           val intent: Intent = Intent(Intent.ACTION_VIEW)
@@ -51,7 +51,7 @@ class FlutterLaunchPlugin: FlutterPlugin, MethodCallHandler {
         val app: String? = call.argument("name")
 
         when(app) {
-          "whatsapp" -> result.success(appInstalledOrNot("com.facebook.orca"))
+          "messenger" -> result.success(appInstalledOrNot("com.facebook.orca"))
           else -> {
             result.error("App not found", "", null)
           }
